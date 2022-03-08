@@ -20,5 +20,5 @@ public class Main {
         Analizador an = new Analizador();
         System.out.println(an.cuartoMetodo());
     }
-    
+
 }

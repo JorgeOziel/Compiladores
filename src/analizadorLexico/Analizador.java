@@ -66,35 +66,86 @@ public class Analizador {
     }
     
     public String cuartoMetodo() throws IOException{
-        char l;
+        char x;
         int ascii;
         String cadena = "";
-        l = leer();
-        ascii = l;
-        if(l == '@'){
-            cadena += l;
-            l = leer();
-            ascii = 'l';
+        x = leer();
+        ascii = x;
+        if(x == '@'){
+            cadena += x;
+            x = leer();
+            ascii = x;
             if(ascii >= 97 && ascii <= 122){
-                cadena += l;
-                l = leer();
-                ascii = l;
+                cadena += x;
+                x = leer();
+                ascii = x;
             }
             while(ascii >= 97 && ascii <= 122){
-                cadena += l;
-                l=leer();
-                ascii = l;
+                cadena += x;
+                x=leer();
+                ascii = x;
             }
             System.out.println("Se validó el identificador");
             return cadena;
-        }else{
+        }else if(ascii >= 48 && ascii <= 57){
+                cadena += x;
+                x = leer();
+                ascii = x;
             while(ascii >= 48 && ascii <= 57){
-                cadena += l;
-                l = leer();
-                ascii = l;
+                cadena += x;
+                x = leer();
+                ascii = x;
+            }
+            if(x == '.'){
+                x = leer();
+                ascii = x;
+                if(ascii >= 48 && ascii <= 57){
+                    cadena += '.';
+                    cadena += x;
+                    x = leer();
+                    ascii = x;
+                }
+                while(ascii >= 48 && ascii <= 57){
+                cadena += x;
+                x = leer();
+                ascii = x;
+                }
             }
             if(cadena.length()!= 0) System.out.println("Se validó el número");
-            else System.out.println("No se validó nada");
+            return cadena;
+        }
+        else{
+            if(x == '='){
+                cadena += x;
+                x = leer();
+                if (x == '='){
+                    cadena += x;
+                    return cadena;
+                }
+            }
+            if(x == '<'){
+                cadena += x;
+                x = leer();
+                if (x == '='){
+                    cadena += x;
+                    return cadena;
+                }
+            }
+            if(x == '>'){
+                cadena += x;
+                x = leer();
+                if (x == '='){
+                    cadena += x;
+                    return cadena;
+                }
+            }
+            if(x == '¡'){ 
+                x = leer();
+                if(x == '!'){
+                    cadena += "¡!";
+                    return cadena;
+                }
+            }
             return cadena;
         }
     }
